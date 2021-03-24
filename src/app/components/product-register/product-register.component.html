@@ -1,0 +1,59 @@
+<mat-card>
+
+    <mat-card-title>Product Form</mat-card-title>
+    <form [formGroup]="productForm">
+        <div class="row">
+            <input type="hidden" formControlName="idCtrl">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="hidden" formControlName="idCtrl">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput placeholder="Placeholder" formControlName="productnameCtrl">
+
+                        <mat-hint>eg: Apple</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Manufacturing Date</mat-label>
+                        <input matInput [matDatepicker]="createdDateTime" placeholder="Manufacturing Date"
+                            formControlName="dateCtrl">
+                        <mat-datepicker-toggle matSuffix [for]="createdDateTime"></mat-datepicker-toggle>
+                        <mat-datepicker #createdDateTime></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Product Description</mat-label>
+                        <textarea matInput formControlName="descriptionCtrl"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class="row">
+            <div *ngIf="!isEdit" class="col-md-6">
+                <button mat-button color="primary" (click)="save()">Save</button>
+            </div>
+            <div *ngIf="isEdit" class="col-md-6">
+                <button mat-button color="info" (click)="update()">Update</button>
+            </div>
+
+        </div>
+    </form>
+
+</mat-card>

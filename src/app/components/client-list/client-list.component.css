@@ -1,0 +1,9 @@
+.card{
+    
+    transform: translate(300px,30px);
+    width: 800px;
+    height: 650px;
+}
+.card-header{
+    text-align: center;
+}

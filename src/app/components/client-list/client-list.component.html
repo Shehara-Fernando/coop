@@ -1,0 +1,148 @@
+<div class="card">
+    <div class="card-header">
+        Client Register
+    </div>
+    <div class="card-body ">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Client of clientList">
+                    <th scope="row">{{Client.clientId}}</th>
+                    <td>{{Client.clientFirstName}} {{Client.clientLastName}}</td>
+                    <td>{{Client.clientEmail}}</td>
+                    <td>{{Client.clientGender == 0 ? 'Male': 'Female' }}</td>
+                    <td>{{Client.clientCountry}}</td>
+                    <td><button type="button" class="btn btn-outline-success"
+                            [routerLink]="['/client', Client.clientId, 'edit']">Edit</button>&nbsp;
+                        <button type="button" class="btn btn-outline-danger"
+                            (click)="deleteClient(Client.clientId)">Delete</button>
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal"
+                            data-target="#exampleModalCenter" (click)="open(Client.clientId)">
+                            View
+                        </button>
+                        <button mat-button color="primary">Primary</button>
+
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">View a Client</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="frm" [formGroup]="clientForm">
+                <div class="row">
+                    <div class=" col-md-6">
+                        <div class="form-group">
+                            <label for="inputEmail4">First Name </label>
+                            <input type="text" class="form-control " style="width: 320px"
+                                formControlName="firstNameCtrl" placeholder="First Name" readonly>
+                            <span *ngIf="this.clientForm.controls['firstNameCtrl'].invalid" class="error">First
+                                name
+                                required </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="inputPassword4">Last Name</label>
+                            <input type="text" class="form-control" style="width: 320px" formControlName="lastNameCtrl"
+                                id="inputPassword4" placeholder="Last Name" readonly>
+                            <span *ngIf="this.clientForm.controls['lastNameCtrl'].invalid" class="error">Last
+                                name
+                                required </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">&nbsp;&nbsp;&nbsp;</div>
+                <div class="row">
+                    <div class=" col-md-6">
+                        <div class="form-group">
+                            <label for="inputAddress">Email</label>
+                            <input type="text" class="form-control" id="inputAddress" style="width: 320px"
+                                formControlName="emailCtrl" placeholder="Email" readonly>
+                            <span *ngIf="this.clientForm.controls['emailCtrl'].invalid" class="error"> Email required
+                            </span>
+                        </div>
+                    </div>
+                    <div class=" col-md-6">
+                        <div class="form-group">
+                            <label for="inputAddress2">Contact Number</label>
+                            <input type="text" class="form-control" id="inputAddress2" style="width: 320px"
+                                formControlName="numberCtrl" placeholder="Contact Number" readonly>
+                            <span *ngIf="this.clientForm.controls['numberCtrl'].invalid" class="error"> Contact Number
+                                required </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <input type="hidden" class="form-control" formControlName="clientIdCtrl"> -->
+                <div class="clearfix">&nbsp;&nbsp;&nbsp;</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Gender</label>
+                        <div class="form-group d-flex justify-content-around pr-2">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" (click)="changeGender(0)" class="custom-control-input" id="male"
+                                    [checked]="!isGender" readonly>
+                                <label class="custom-control-label" for="Male">Male</label>
+                            </div>
+
+                            <div class="custom-control custom-radio">
+                                <input type="radio" (click)="changeGender(1)" class="custom-control-input" id="female"
+                                    [checked]="isGender" readonly>
+                                <label class="custom-control-label" for="Female">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Country</label>
+                        <div class="form-group">
+                            <select id="inputState" class="form-control" formControlName="countryCtrl" readonly>
+                                <option selected>Choose...</option>
+
+                                <option>Sri Lanka</option>
+                                <option>Japan</option>
+                                <option>Dubai</option>
+                            </select>
+
+                            <span *ngIf="this.clientForm.controls['countryCtrl'].invalid" class="error"> Country
+                                required </span>
+                        </div>
+                    </div>
+
+
+                </div>
+            
+            </form>
+            
+            
+            </div>
+
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

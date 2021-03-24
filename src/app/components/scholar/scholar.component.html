@@ -1,0 +1,68 @@
+<div class="card" style="width: 700px;">
+    <form #studentForm="ngForm" class="text-center border border-light p-5">
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Student Name</label>
+                    <input type="text" placeholder="Student Name" class="form-control" [(ngModel)]="student.studentName"
+                        name="studentName">
+                    <!-- <span *ngIf="this.studentFormGroup.controls['studentNameCtrl'].invalid" class="error">Student
+                            name required </span> -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="text" [(ngModel)]="student.studentAge" name="studentAge" placeholder="Age"
+                        class="form-control">
+                    <!-- <span *ngIf="this.studentFormGroup.controls['ageCtrl'].invalid" class="error">Age
+                            Required</span> -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- <div class="col-md-6">
+                    <label>Gender</label>
+                    <div class="form-group d-flex justify-content-around pr-2">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" (click)="changeGender(0)" class="custom-control-input" id="male"
+                                [checked]="!isGender">
+                            <label class="custom-control-label" for="Male">Male</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input type="radio" (click)="changeGender(1)" class="custom-control-input" id="female"
+                                [checked]="isGender">
+                            <label class="custom-control-label" for="Female">Female</label>
+                        </div>
+                    </div>
+                </div> -->
+            <div class="col-md-6">
+                <label>Rank</label>
+                <select class="form-control" [(ngModel)]="student.rank" name="rank">
+                    <option>Select One</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+            </div>
+        </div>
+        <div class="clearfix">&nbsp;</div>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="date" id="fromDate" class="form-control" [(ngModel)]="student.dob" name="dob">
+            </div>
+        </div>
+
+<div class="row">
+    <div *ngIf="!isEdit" class="col-md-6"> <button type="button" class="btn btn-outline-success"
+            (click)="save(student)">SAVE</button>
+    </div>
+    <div *ngIf="isEdit" class="col-md-6"> <button type="button" class="btn btn-outline-primary"
+            (click)="update(student)">Update</button>
+    </div>
+</div>
+</form>
+</div>

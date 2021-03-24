@@ -1,0 +1,124 @@
+<div class="card">
+  <div class="card-header">
+    Client Register
+  </div>
+  <div class="card-body " style="width: 700px;">
+    <form class="frm" [formGroup]="clientForm">
+      <div class="row">
+        <div class=" col-md-6">
+          <div class="form-group">
+            <label for="inputEmail4">First Name </label>
+            <input type="text" class="form-control " style="width: 320px" formControlName="firstNameCtrl"
+              placeholder="First Name">
+            <span *ngIf="this.clientForm.controls['firstNameCtrl'].invalid" class="error">First
+              name
+              required </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="inputPassword4">Last Name</label>
+            <input type="text" class="form-control" style="width: 320px" formControlName="lastNameCtrl"
+              id="inputPassword4" placeholder="Last Name">
+            <span *ngIf="this.clientForm.controls['lastNameCtrl'].invalid" class="error">Last
+              name
+              required </span>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">&nbsp;&nbsp;&nbsp;</div>
+      <div class="row">
+        <div class=" col-md-6">
+          <div class="form-group">
+            <label for="inputAddress">Email</label>
+            <input type="text" class="form-control" id="inputAddress" style="width: 320px" formControlName="emailCtrl"
+              placeholder="Email">
+            <span *ngIf="this.clientForm.controls['emailCtrl'].invalid" class="error"> Email required </span>
+          </div>
+        </div>
+        <div class=" col-md-6">
+          <div class="form-group">
+            <label for="inputAddress2">Contact Number</label>
+            <input type="text" class="form-control" id="inputAddress2" style="width: 320px" formControlName="numberCtrl"
+              placeholder="Contact Number">
+            <span *ngIf="this.clientForm.controls['numberCtrl'].invalid" class="error"> Contact Number required </span>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix">&nbsp;&nbsp;&nbsp;</div>
+      <div class="row">
+        <div class=" col-md-6">
+          <div class="form-group">
+            <label for="inputCity">Password</label>
+            <input type="password" class="form-control" style="width: 320px" formControlName="passwordCtrl"
+              placeholder="Password">
+            <span *ngIf="this.clientForm.controls['passwordCtrl'].invalid" class="error"> Password required </span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputState">Confirm Password</label>
+          <div class="form-group">
+            <input type="password" class="form-control" style="width: 320px" formControlName="conPasswordCtrl"
+              placeholder="Confirm Password">
+            <span *ngIf="this.clientForm.controls['conPasswordCtrl'].invalid" class="error"> Confirm Password required
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <input type="hidden" class="form-control" formControlName="clientIdCtrl">
+      <div class="clearfix">&nbsp;&nbsp;&nbsp;</div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Gender</label>
+          <div class="form-group d-flex justify-content-around pr-2">
+            <div class="custom-control custom-radio">
+              <input type="radio" (click)="changeGender(0)" class="custom-control-input" id="male"
+                [checked]="!isGender">
+              <label class="custom-control-label" for="Male">Male</label>
+            </div>
+
+            <div class="custom-control custom-radio">
+              <input type="radio" (click)="changeGender(1)" class="custom-control-input" id="female"
+                [checked]="isGender">
+              <label class="custom-control-label" for="Female">Female</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>Country</label>
+          <div class="form-group">
+            <select id="inputState" class="form-control" formControlName="countryCtrl">
+              <option selected>Choose...</option>
+
+              <option>Sri Lanka</option>
+              <option>Japan</option>
+              <option>Dubai</option>
+            </select>
+
+            <span *ngIf="this.clientForm.controls['countryCtrl'].invalid" class="error"> Country required </span>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="clearfix">&nbsp;&nbsp;</div>
+      <div class="row text-center">
+        <div *ngIf="!isEdit" class="col-md-6"> <button type="button" class="btn btn-outline-success"
+            (click)="save()">Sign Up</button>
+        </div>
+        <div class="col-md-6"> <button type="button" class="btn btn-outline-success" (click)="OnSubmit()">Add To
+            storage</button>
+        </div>
+        <div class="col-md-6"> <button type="button" class="btn btn-outline-success"
+            (click)="retrieveStorage()">Retrieve storage</button>
+        </div>
+        <div *ngIf="isEdit" class="col-md-6"> <button type="button" class="btn btn-outline-primary"
+            (click)="update()">Update</button>
+        </div>
+
+      </div>
+
+    </form>
+  </div>
+</div>
